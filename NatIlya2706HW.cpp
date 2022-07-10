@@ -19,6 +19,7 @@
 */
 
 #include <iostream>
+#include <fstream>
 #include "Windows.h"
 using namespace std;
 
@@ -84,6 +85,8 @@ int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+    ofstream outputFile;
+    outputFile.open("output.txt");
 
     Guide* guide;
     
@@ -99,16 +102,22 @@ int main()
         string address;
         string typeOfActivity;
 
+        outputFile << "Пользователь " << i + 1 << ":\n";
         cout << "Введите имя организации " << i + 1 << "-го пользователя: ";
         cin >> nameOfOrganisation;
+        outputFile << nameOfOrganisation << '\n';
         cout << "Введите имя " << i + 1 << "-го владельца : ";
         cin >> nameOfOwner;
+        outputFile << nameOfOwner << '\n';
         cout << "Введите номер телефона " << i + 1 << "-го пользователя: ";
         cin >> phoneNumber;
+        outputFile << phoneNumber << '\n';
         cout << "Введите адрес " << i + 1 << "-го пользователя: ";
         cin >> address;
+        outputFile << address << '\n';
         cout << "Введите род деятельности " << i + 1 << "-го пользователя: ";
         cin >> typeOfActivity;
+        outputFile << typeOfActivity << '\n';
 
         guide[i].setNameOfOrganisation(nameOfOrganisation);
         guide[i].setNameOfOwner(nameOfOwner);
@@ -227,12 +236,13 @@ int main()
             ID--;
             int choiceToChange; // Выбор "изменения".
             string bufferWithChanges; // Буфер с изменениями.
+            cout << "Команды:\n1 - изменение названия организации;\n2 - изменение имени владельца;\n3 - изменение номера телефона;\n4 - изменение адреса\n5 - изменение рода деятельности.\nВведите команду: ";
             cin >> choiceToChange;
             switch (choiceToChange)
             {
             case 1:
             {
-                cout << "Изменение названия фирмы. Введите новое название фирмы: ";
+                cout << "Изменение названия организации. Введите новое название организации: ";
                 cin >> bufferWithChanges;
                 guide[ID].setNameOfOrganisation(bufferWithChanges);
                 break;
@@ -283,16 +293,24 @@ int main()
             string address;
             string typeOfActivity;
 
+            outputFile << "Пользователь " << amountOfUsers - 1 << ":\n";
+
             cout << "Введите имя организации: ";
             cin >> nameOfOrganisation;
+            outputFile << nameOfOrganisation << '\n';
             cout << "Введите имя: ";
             cin >> nameOfOwner;
+            outputFile << nameOfOwner << '\n';
             cout << "Введите номер телефона: ";
             cin >> phoneNumber;
+            outputFile << phoneNumber << '\n';
             cout << "Введите адрес: ";
             cin >> address;
+            outputFile << address << '\n';
             cout << "Введите род деятельности: ";
             cin >> typeOfActivity;
+            outputFile << typeOfActivity << '\n';
+
             guide[amountOfUsers - 1].setNameOfOrganisation(nameOfOrganisation);
             guide[amountOfUsers - 1].setNameOfOwner(nameOfOwner);
             guide[amountOfUsers - 1].setPhoneNumber(phoneNumber);
